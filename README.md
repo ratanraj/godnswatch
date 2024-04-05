@@ -18,6 +18,8 @@ GoDNSWatch is a DNS monitoring tool that initiates a DNS server to listen on the
 3. **Analyzing DNS Traffic:**
    Once GoDNSWatch is running, it will automatically log all DNS requests made to the server. Requests to known malware domains will be flagged, allowing for immediate identification and further investigation.
 
+![GoDNSWatch Screenshot](screenshots/godnswatch.png)
+
 ## Contribution
 Contributions to GoDNSWatch are welcome! Whether you're looking to fix bugs, add new features, or improve documentation, your help is appreciated. Please follow the standard GitHub pull request process to submit your contributions.
 
