@@ -16,7 +16,6 @@ import (
 	"time"
 )
 
-// RecordMap type for DNS records
 type RecordMap map[string]string
 
 var baseStyle = lipgloss.NewStyle().
@@ -24,8 +23,8 @@ var baseStyle = lipgloss.NewStyle().
 	BorderForeground(lipgloss.Color("240"))
 
 var (
-	normalStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("#FFF")) // Default style
-	malwareStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("red"))  // Malware style
+	normalStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("#FFF"))
+	malwareStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("red"))
 )
 
 type model struct {
@@ -56,9 +55,7 @@ func (m *model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "q", "ctrl+c":
 			return m, tea.Quit
 		case "enter":
-			//return m, tea.Batch(
-			//	tea.Printf("Let's go to %s!", m.table.SelectedRow()[1]),
-			//)
+
 		}
 	case tea.WindowSizeMsg:
 		m.windowWidth, m.windowWidth = msg.Width, msg.Height
@@ -81,7 +78,7 @@ func (m *model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				rows = append(rows, table.Row{keyStr, fmt.Sprintf("%d", valueInt), flagged})
 			}
 		}
-		return true // Continue iterating
+		return true
 	})
 
 	sort.Slice(rows, func(i, j int) bool {
@@ -89,7 +86,6 @@ func (m *model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	})
 
 	sort.Slice(rows, func(i, j int) bool {
-		// Convert the hits back to integers for comparison
 		hitsI, _ := strconv.Atoi(rows[i][1])
 		hitsJ, _ := strconv.Atoi(rows[j][1])
 		return hitsI > hitsJ
