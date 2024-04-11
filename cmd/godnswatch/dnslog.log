@@ -1,0 +1,23 @@
+2024/04/11 13:34:57.556355 main.go:211: Starting server on 127.0.0.1:53
+2024/04/11 13:36:03.910214 main.go:211: Starting server on 127.0.0.1:53
+2024/04/11 13:37:33.413225 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 13:37:39.144953 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 13:39:09.749754 main.go:214: Starting server on 127.0.0.1:53
+2024/04/11 13:40:50.069151 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 13:44:33.203095 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 13:44:33.203249 main.go:217: Failed to start server: listen udp 0.0.0.0:53: bind: address already in use
+2024/04/11 13:45:12.670525 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 13:45:12.670854 main.go:217: Failed to start server: listen udp 0.0.0.0:53: bind: address already in use
+2024/04/11 13:47:41.741473 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 13:47:41.741952 main.go:217: Failed to start server: listen udp 0.0.0.0:5353: bind: address already in use
+2024/04/11 13:48:09.250880 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 13:49:10.920225 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 14:06:41.236444 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 14:07:11.541076 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 14:13:37.754117 main.go:133: blocked DNS requested: fastclick.net.
+2024/04/11 14:13:48.943532 main.go:133: blocked DNS requested: fastclick.net.
+2024/04/11 14:13:50.253794 main.go:133: blocked DNS requested: fastclick.net.
+2024/04/11 14:13:54.131254 main.go:133: blocked DNS requested: fastclick.net.
+2024/04/11 14:14:23.869945 main.go:133: blocked DNS requested: fastclick.net.
+2024/04/11 14:15:12.133066 main.go:213: Starting server on 127.0.0.1:53
+2024/04/11 14:15:24.438948 main.go:133: blocked DNS requested: fastclick.net.

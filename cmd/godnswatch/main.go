@@ -8,6 +8,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/miekg/dns"
 	"io/ioutil"
+	"log"
 	"net"
 	"os"
 	"sort"
@@ -129,6 +130,7 @@ func handleDNSRequest(records RecordMap, upstream string, m *model) func(dns.Res
 
 		// Check if the domain is in our records
 		if ip, found := records[domain]; found {
+			log.Printf("blocked DNS requested: %s\n", domain)
 			msg.Answer = append(msg.Answer, &dns.A{
 				Hdr: dns.RR_Header{Name: domain, Rrtype: dns.TypeA, Class: dns.ClassINET, Ttl: 3600},
 				A:   net.ParseIP(ip),
@@ -156,6 +158,7 @@ func handleDNSRequest(records RecordMap, upstream string, m *model) func(dns.Res
 
 		err := w.WriteMsg(&msg)
 		if err != nil {
+			log.Printf("%v\n", err)
 			return
 		}
 	}
@@ -164,10 +167,19 @@ func handleDNSRequest(records RecordMap, upstream string, m *model) func(dns.Res
 var err error
 
 func main() {
+	fmt.Print("\033[H\033[2J")
+
+	file, err := openLogFile("./dnslog.log")
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+	log.SetFlags(log.LstdFlags | log.Lshortfile | log.Lmicroseconds)
+
 	// Load DNS records from a file
 	records, err := LoadRecords("blacklist.json")
 	if err != nil {
-		fmt.Println("Failed to load DNS records:", err)
+		log.Println("Failed to load DNS records:", err)
 		os.Exit(1)
 	}
 
@@ -197,18 +209,26 @@ func main() {
 		dns.HandleFunc(".", handleDNSRequest(records, upstream, m))
 
 		// Create and start server
-		server := &dns.Server{Addr: "127.0.0.1:53", Net: "udp"}
-		fmt.Println("Starting server on 127.0.0.1:53")
+		server := &dns.Server{Addr: "127.0.0.1:8853", Net: "udp"}
+		log.Println("Starting server on 127.0.0.1:53")
 		err = server.ListenAndServe()
 		defer server.Shutdown()
 		if err != nil {
-			fmt.Println("Failed to start server:", err)
+			log.Println("Failed to start server:", err)
 			os.Exit(1)
 		}
 	}()
 
 	if _, err := tea.NewProgram(m).Run(); err != nil {
-		fmt.Println("Error running program", err)
+		log.Println("Error running program", err)
 		os.Exit(1)
 	}
+}
+
+func openLogFile(path string) (*os.File, error) {
+	logFile, err := os.OpenFile(path, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0644)
+	if err != nil {
+		return nil, err
+	}
+	return logFile, nil
 }
