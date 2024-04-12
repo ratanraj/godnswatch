@@ -27,6 +27,10 @@ var domains = []string{
 	"practicalmalwareanalysis.com",
 	"clients6.google.com",
 	"play.google.com",
+	"o4uxrk33.com",
+	"o4uxrk33.com",
+	"o4uxrk33.com",
+	"o4uxrk33.com",
 	"mail.google.com",
 	"drive-thirdparty.googleusercontent.com",
 	"www.google.com",
@@ -49,7 +53,7 @@ func queryDNS(domainName string) {
 	m.RecursionDesired = true                      // Set recursion desired to true
 
 	// Address of the DNS server
-	const dnsServer = "127.0.0.1:8853"
+	const dnsServer = "8.8.8.8:53"
 
 	// Create a new DNS client
 	c := new(dns.Client)
