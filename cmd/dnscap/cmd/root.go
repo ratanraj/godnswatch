@@ -2,16 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/charmbracelet/lipgloss"
 	"os"
 
 	"github.com/spf13/cobra"
-)
-
-var (
-	HeaderStyle  = lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("#FFFACD")).Background(lipgloss.Color("#191970")).Padding(0, 1)
-	EvenRowStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#FFFFFF")).Background(lipgloss.Color("#333333")).Padding(0, 1)
-	OddRowStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("#AAAAAA")).Background(lipgloss.Color("#111111")).Padding(0, 1)
 )
 
 var filePath string
